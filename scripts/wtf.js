@@ -250,7 +250,7 @@ var WTF = (function() {
         );
 
         for (var x = 0; x < credits.length; x++) {
-          $("#userCredits").append("<li>" + credits[x] + "</li>");
+          $("#userCredits").prepend("<li>" + credits[x] + "</li>");
         }
 
         document.title = title;
