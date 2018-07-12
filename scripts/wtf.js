@@ -253,6 +253,8 @@ var WTF = (function() {
           $("#userCredits").prepend("<li>" + credits[x] + "</li>");
         }
 
+        $("#userCredits").append("<li><a href='https://www.reddit.com/u/Painshifter'>u/Painshifter</a></li>");
+
         document.title = title;
 
         // Toggle animation
