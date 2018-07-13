@@ -249,13 +249,21 @@ var WTF = (function() {
             '</dl>'
         );
 
-        for (var x = 0; x < credits.length; x++) {
-          $("#userCredits").prepend("<li>" + credits[x] + "</li>");
+        $("#userCredits").empty();
+
+        if (credits != null) {
+
+          for (var x = 0; x < credits.length; x++) {
+            $("#userCredits").prepend("<li>" + credits[x] + "</li>");
+          }
         }
 
         $("#userCredits").append("<li><a href='https://www.reddit.com/u/Painshifter'>u/Painshifter</a></li>");
 
-        document.title = title;
+        if (title != null) {
+          document.title = title;
+        }
+
 
         // Toggle animation
 
@@ -328,6 +336,14 @@ var WTF = (function() {
 
         init: function( data ) {
 
+          if (data == null) {
+            $("#noKey").show();
+            $( '.loading' ).remove();
+          } else {
+
+              $("#noKey").hide();
+
+
             if ( !data ) throw data + ' is not a valid corpus';
 
             if ( typeof data === 'string' ) {
@@ -344,6 +360,9 @@ var WTF = (function() {
                             start();
                         },
                         error: function( xhr, errorType, error ) {
+                          $("#noKey").show();
+                          $("#greeting").html("That fucking key doesn't work. Try again.")
+                          $( '.loading' ).remove();
                             throw 'Cannot load JSON data: ' + error;
                         }
                     });
@@ -359,12 +378,17 @@ var WTF = (function() {
                             start();
                         },
                         error: function( xhr, errorType, error ) {
+                          $("#noKey").show();
+                          $("#greeting").html("That fucking key doesn't work. Try again.")
+                          $( '.loading' ).remove();
                             throw 'Cannot load spreadsheet. Is it published? (@see https://support.google.com/drive/answer/37579?hl=en)';
                         }
                     });
 
                 } else {
-
+                  $("#noKey").show();
+                  $("#greeting").html("That fucking key doesn't work. Try again.")
+                  $( '.loading' ).remove();
                     throw 'Unrecognised data format: ' + data;
                 }
 
@@ -375,6 +399,7 @@ var WTF = (function() {
                 corpus = data;
                 start();
             }
+          }
         },
 
         // Expose certain methods

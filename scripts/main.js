@@ -45,8 +45,10 @@ $(function() {
       if (!results[2]) return '';
       return decodeURIComponent(results[2].replace(/\+/g, ' '));
   }
+  
     var key = getParameterByName("key");
 
     WTF.init(key);
+
 
 });
